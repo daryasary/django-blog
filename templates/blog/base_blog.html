@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% load staticfiles %}
+		<link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}">
+		<title>blog|{% block title %}{% endblock %}</title>
+	</head>
+	<body>
+		<div class="header"><h2>My blog index page</h2></div>
+		{% block content %}{% endblock %}
+		<div class='category view'></div>
+	</body>
+</html>
