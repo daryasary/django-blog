@@ -7,7 +7,7 @@ from datetime import datetime
 # Create your models here.
 class Category(models.Model):
 	name = models.CharField(max_length=30)
-	slug = models.SlugField()
+	slug = models.SlugField(blank=True)
 
 	def save(self, *args, **kwargs):
 		if not self.id:
@@ -50,12 +50,12 @@ class Post(models.Model):
 		super(Post, self).save(*args, **kwargs)
 
 	def __unicode__(self):
-		return "%s, %s" %(self.title , self.body)
+		return "%s" %(self.title)
 
 class Comment(models.Model):
 	name = models.CharField(max_length=30)
 	email = models.EmailField()
-	date = models.DateField()
+	date = models.DateField(default=datetime.now())
 	website = models.URLField(blank=True)
 	post = models.ManyToManyField(Post)
 	body = models.TextField()
