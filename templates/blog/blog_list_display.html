@@ -1,6 +1,17 @@
 {% extends 'blog/base_blog.html' %}
 {% block title %}Recent blog posts{% endblock %}
 {% block content %} 
-<h3>Recent blog posts will be shown here</h3> 
-<br>
+<h2>Welcome to my personal blog</h2>
+<h3>Recent posts:</h3>
+<div> 
+	{% for post in posts %}
+		<a href="/blog/post/{{post.slug}}">
+		<h4> {{post.title}} </h4>
+		</a>
+		<h5> written by:{{post.author}} || {{post.date}} || category: {{post.cat}}</h5>
+		<p> {{post.body|slice:'0:200'}}... </p>
+		<h5> Tags:{{post.tag}} </h5>
+	{% endfor %}
+</div>
+
 {% endblock %}
