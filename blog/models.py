@@ -42,6 +42,9 @@ class Post(models.Model):
 	# would be hidden field.
 	date = models.DateField(default=datetime.now()) 
 	author = models.ManyToManyField(User)
+
+	class Meta:
+		ordering = ['-date']
 	
 	def save(self, *args, **kwargs):
 		if not self.id:
@@ -51,6 +54,13 @@ class Post(models.Model):
 
 	def __unicode__(self):
 		return "%s" %(self.title)
+
+	def get_absolute_url(self):
+		# return "/blog/post/%s" %self.slug
+		from django.core.urlresolvers import reverse
+		return reverse('blog.views.single_post', args=[str(self.slug)])
+
+
 
 class Comment(models.Model):
 	name = models.CharField(max_length=30)

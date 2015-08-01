@@ -7,6 +7,13 @@
 	text-align: center;
 	padding:25px;
 }
+.footer{
+	background-color: black;
+
+}
+.footer>h4{
+	color: white;
+}
 h2, h3, h4, h5, h6, p{
 	font-family: sans-serif;
 }
