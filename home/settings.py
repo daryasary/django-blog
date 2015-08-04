@@ -81,12 +81,16 @@ DATABASES = {
     #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     # }
     'default' : {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dj_home_blog',
+        'ENGINE' : 'django.db.backends.mysql',
+        'NAME' :  'dj_home_blog',
         'USER' : 'hosein',
         'PASSWORD' : 'hosein',
-        'HOST' : '',
+        'HOST' :'',
         'PORT' : '',
+       
+        # 'OPTIONS': {
+        #     'read_default_file': '/home/hosein/Desktop/projects/home/MysqlConfiguration.conf' ,
+        #     }
     }
 }
 

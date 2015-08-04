@@ -6,8 +6,17 @@ from blog.models import Post, Category, Tag, Comment
 # Create your views here.
 def blog_list(request):
 	Context = {}
-	posts = Post.objects.all()
+	posts = Post.objects.all().prefetch_related('cat')
 	Context['posts'] = posts
+
+	# author = posts.author.all()
+	# Context['author'] = author
+
+	# tag = posts.tag.all()
+	# Context['tag'] = tag
+
+	# cat = posts.category.all()
+	# Context['cat'] = cat
 
 	categories = Category.objects.all()
 	Context['categories'] = categories
