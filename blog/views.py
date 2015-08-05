@@ -7,6 +7,8 @@ from blog.models import Post, Category, Tag, Comment
 def blog_list(request , cat=None, tag=None, year=None, Month=None):
 	Context = {}
 	posts = Post.objects.all()
+	Categories = Category.objects.all()
+	Tags = Tag.objects.all()
 
 
 	if cat is not None:
@@ -20,6 +22,8 @@ def blog_list(request , cat=None, tag=None, year=None, Month=None):
 
 
 	Context['posts'] = posts
+	Context['Categories'] = Categories
+	Context['Tags'] = Tags
 	# categories = Category.objects.all()
 	# Context['categories'] = categories
 

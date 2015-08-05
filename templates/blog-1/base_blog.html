@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% load staticfiles %}
+		<link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}">
+		<title>blog|{% block title %}{% endblock %}</title>
+	</head>
+	<body>
+		<div class="header"><h2>My blog index page</h2></div>
+		{% block content %}{% endblock %}
+		<div class='footer'>
+			<h4>Category:</h4>
+			{% for cat in categories %}
+				<h4> {{cat.name}} </h4>
+			{% endfor %}
+		</div>
+	</body>
+</html>

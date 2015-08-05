@@ -10,7 +10,8 @@ class CategoryAdmin(admin.ModelAdmin):
 	list_display = ['name', 'slug']
 
 class PostAdmin(admin.ModelAdmin):
-	list_display = ['title', 'publish']
+	# tag = TagAdmin()
+	list_display = ['title', 'get_cat', 'publish', 'date', 'get_tags']
 
 class CommentAdmin(admin.ModelAdmin):
 	list_display = ['name', 'body', 'email']

@@ -68,6 +68,15 @@ class Post(models.Model):
 		from django.core.urlresolvers import reverse
 		return reverse('blog_single', args=[str(self.slug)])
 
+	def get_tags(self):
+		T = self.tag.all()
+		return (', '.join(t.name for t in T))
+	get_tags.short_description = 'Tag (s)'
+
+	def get_cat(self):
+		C = self.cat.all()
+		return (', '.join(c.name for c in C))
+	get_cat.short_description = 'Category'
 
 
 class Comment(models.Model):
