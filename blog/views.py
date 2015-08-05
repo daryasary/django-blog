@@ -1,28 +1,30 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 
 from blog.models import Post, Category, Tag, Comment
 
 # Create your views here.
-def blog_list(request):
+def blog_list(request , cat=None, tag=None, year=None, Month=None):
 	Context = {}
-	posts = Post.objects.all().prefetch_related('cat')
+	posts = Post.objects.all()
+
+
+	if cat is not None:
+		cat = get_object_or_404(Category, slug=cat)
+		posts = Post.objects.filter(cat=cat)
+
+
+	if tag is not None:
+		tag = get_object_or_404(Tag, slug=tag)
+		posts = Post.objects.filter(tag=tag)
+
+
 	Context['posts'] = posts
+	# categories = Category.objects.all()
+	# Context['categories'] = categories
 
-	# author = posts.author.all()
-	# Context['author'] = author
-
-	# tag = posts.tag.all()
-	# Context['tag'] = tag
-
-	# cat = posts.category.all()
-	# Context['cat'] = cat
-
-	categories = Category.objects.all()
-	Context['categories'] = categories
-
-	tags = Tag.objects.all()
-	Context['tags'] = tags
+	# tags = Tag.objects.all()
+	# Context['tags'] = tags
 
 	return render(request, "blog/blog_list_display.html", Context)
 

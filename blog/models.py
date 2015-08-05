@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.text import slugify
 from django.contrib.auth.models import User
 
-from datetime import datetime
+from django.utils.timezone import now
 
 # Create your models here.
 class Category(models.Model):
@@ -17,6 +17,10 @@ class Category(models.Model):
 	def __unicode__(self):
 		return "%s , %s"%(self.name, self.slug)
 
+	def get_absolute_url(self):
+		from django.core.urlresolvers import reverse
+		return reverse ('blog_post_list_cat', args=[str(self.slug)])
+
 class Tag(models.Model):
 	name = models.CharField(max_length=30)
 	slug = models.SlugField(blank=True)
@@ -29,6 +33,10 @@ class Tag(models.Model):
 	def __unicode__(self):
 		return "%s , %s"%(self.name, self.slug)
 
+	def get_absolute_url(self):
+		from django.core.urlresolvers import reverse
+		return reverse('blog_post_list_tag', args=[str(self.slug)])
+
 
 class Post(models.Model):
 	title = models.CharField(max_length=30)
@@ -40,7 +48,7 @@ class Post(models.Model):
 
 	# default datetime.now should set, next ;)
 	# would be hidden field.
-	date = models.DateField(default=datetime.now()) 
+	date = models.DateField(default=now()) 
 	author = models.ManyToManyField(User)
 
 	class Meta:
@@ -49,7 +57,7 @@ class Post(models.Model):
 	def save(self, *args, **kwargs):
 		if not self.id:
 			self.slug = slugify(self.title)
-		self.date = datetime.now()
+		self.date = now()
 		super(Post, self).save(*args, **kwargs)
 
 	def __unicode__(self):
@@ -58,14 +66,14 @@ class Post(models.Model):
 	def get_absolute_url(self):
 		# return "/blog/post/%s" %self.slug
 		from django.core.urlresolvers import reverse
-		return reverse('blog.views.single_post', args=[str(self.slug)])
+		return reverse('blog_single', args=[str(self.slug)])
 
 
 
 class Comment(models.Model):
 	name = models.CharField(max_length=30)
 	email = models.EmailField()
-	date = models.DateField(default=datetime.now())
+	date = models.DateField(default=now())
 	website = models.URLField(blank=True)
 	post = models.ManyToManyField(Post)
 	body = models.TextField()
