@@ -253,6 +253,9 @@ aside p a:hover{
     .main article {
         float: left;
         width: 57%;
+        background-color: #FCEEEE;
+        padding: 20px;
+        margin-bottom: 20px;
     }
 
     .main aside {
