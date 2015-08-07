@@ -1,16 +1,17 @@
 {% extends 'blog/base.html' %}
 {% block title %}Recent blog posts{% endblock %}
 {% block content %} 
-<div> 
-		{% for post in posts %}
-			<a href="{{post.get_absolute_url}}">
-				<h4> {{post.title}} </h4>
-			</a>
-			<h5>written by: {% for a in post.author.all %}{{a.username}}{%endfor%}|| {{post.date}} || 
+	{% for post in posts %}
+		<article>
+			<header>
+				<a href="{{post.get_absolute_url}}"><h1>{{post.title}}</h1></a>
+				<h5>Written by: {% for a in post.author.all %}{{a.username}}{%endfor%}|| {{post.date}} || 
 			category: {% for c in post.cat.all %} <a href="{{c.get_absolute_url}}">{{c.name}}</a>{% endfor %}
-			</h5>
-			<p> {{post.body|slice:'0:200'}}... </p>
-			<h5> Tags:{% for t in post.tag.all %} <a href="{{t.get_absolute_url}}">{{t.name}}</a>{% endfor %}</h5>
-		{% endfor %}
-	</div>
+				</h5>
+			</header>
+			<section><p> {{post.body|slice:'0:200'}}... </p> </section>
+			<footer><h5>Tags:{% for t in post.tag.all %} <a href="{{t.get_absolute_url}}">{{t.name}}</a>{% endfor %}</h5></footer>
+		</article>
+	{% endfor %}
+	
 {% endblock %}

@@ -3,8 +3,12 @@
 {% block title %} {{post.title}} {% endblock %}
 
 {% block content %}
-<h3> {{post.title}} </h3>
-<p>{{post.body}}</p>
-<h5>RATE</h5>
-<h4>comments</h4>
+	<article>
+		<header><h1>{{post.title}}</h1></header>
+		<section><p>{{post.body}}</p></section>
+		<footer><h4>Date: {{post.date}} | Written by: {% for a in post.author.all %}{{a.username}}{%endfor%} | Category: {% for c in post.cat.all %} <a href="{{c.get_absolute_url}}">{{c.name}}</a>{% endfor %}</h4></footer>
+		<br>
+		<h3>COMMETNS WILL BE ADDED SOON</h3>
+	</article>
+	
 {% endblock%}
