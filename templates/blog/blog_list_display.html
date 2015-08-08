@@ -9,7 +9,7 @@
 			category: {% for c in post.cat.all %} <a href="{{c.get_absolute_url}}">{{c.name}}</a>{% endfor %}
 				</h5>
 			</header>
-			<section><p> {{post.body|slice:'0:200'}}... </p> </section>
+			<section><p> {{post.body|slice:'0:200'}}...</p><a href="{{post.get_absolute_url}}">READ MORE</a> </section>
 			<footer><h5>Tags:{% for t in post.tag.all %} <a href="{{t.get_absolute_url}}">{{t.name}}</a>{% endfor %}</h5></footer>
 		</article>
 	{% endfor %}

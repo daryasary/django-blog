@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 
 from blog.models import Post, Category, Tag, Comment
+from blog.forms import CommentForm
 
 # Create your views here.
 def blog_list(request , cat=None, tag=None, year=None, Month=None):
@@ -35,12 +36,7 @@ def blog_list(request , cat=None, tag=None, year=None, Month=None):
 def single_post(request, slug):
 	# here will retrieve context, 
 	# and then render the page
-	# try:
-	# 	post = Post.objects.get(slug=slug)
-	# 	# return HttpResponse( 'good request for %s' %post_id)
-	# 	return render(request, 'blog/single_post.html', {'post':post})
-	# except:
-	# 	return HttpResponse('bad requests for %s' %slug)
+	comment = CommentForm()
 	Context = {}
 	Categories = Category.objects.all()
 	Tags = Tag.objects.all()
@@ -48,4 +44,5 @@ def single_post(request, slug):
 	Context['post'] = post
 	Context['Categories'] = Categories
 	Context['Tags'] = Tags
+	Context['Comment'] = comment
 	return render(request, 'blog/single_post.html', Context)

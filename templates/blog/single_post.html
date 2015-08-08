@@ -6,9 +6,12 @@
 	<article>
 		<header><h1>{{post.title}}</h1></header>
 		<section><p>{{post.body}}</p></section>
-		<footer><h4>Date: {{post.date}} | Written by: {% for a in post.author.all %}{{a.username}}{%endfor%} | Category: {% for c in post.cat.all %} <a href="{{c.get_absolute_url}}">{{c.name}}</a>{% endfor %}</h4></footer>
-		<br>
-		<h3>COMMETNS WILL BE ADDED SOON</h3>
+		<footer><br><br><h5>Date: {{post.date}} | Written by: {% for a in post.author.all %}{{a.username}}{%endfor%} | Category: {% for c in post.cat.all %} <a href="{{c.get_absolute_url}}">{{c.name}}</a>{% endfor %}</h5>
+		<br><br>
+
+		{% include 'blog/Comment_form.html' %}
+
+		</footer>
 	</article>
 	
 {% endblock%}

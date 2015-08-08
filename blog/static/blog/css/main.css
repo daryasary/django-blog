@@ -7,7 +7,7 @@ html {
 }
 
 ::-moz-selection {
-    background: #b3d4fc;
+    background: #FB4848;
     text-shadow: none;
 }
 
@@ -181,6 +181,8 @@ aside p a:hover{
 
 
 
+
+
 /* ==========================================================================
    Media Queries
    ========================================================================== */
@@ -231,6 +233,7 @@ aside p a:hover{
         -webkit-box-shadow: 0 5px 10px #aaa;
            -moz-box-shadow: 0 5px 10px #aaa;
                 box-shadow: 0 5px 10px #aaa;
+                box-sizing: unset;
     }
 
 /* ============
@@ -256,6 +259,7 @@ aside p a:hover{
         background-color: #FCEEEE;
         padding: 20px;
         margin-bottom: 20px;
+        box-sizing:unset;
     }
 
     .main aside {

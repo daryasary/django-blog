@@ -48,7 +48,7 @@ class Post(models.Model):
 
 	# default datetime.now should set, next ;)
 	# would be hidden field.
-	date = models.DateField(default=now()) 
+	date = models.DateTimeField(default=now()) 
 	author = models.ManyToManyField(User)
 
 	class Meta:
@@ -83,8 +83,8 @@ class Comment(models.Model):
 	name = models.CharField(max_length=30)
 	email = models.EmailField()
 	date = models.DateField(default=now())
-	website = models.URLField(blank=True)
-	post = models.ManyToManyField(Post)
+	website = models.URLField(blank=True, )
+	post = models.ForeignKey(Post, default=1)
 	body = models.TextField()
 
 	def __unicode__(self):
