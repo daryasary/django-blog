@@ -68,16 +68,17 @@ input {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
 }
-.form--login input[type="text"], .form--login input[type="password"] {
+.form--login input[type="text"], .form--login input[type="password"], .form--login input[type="email"] {
   background-color: #3b4148;
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
 }
 
 .form--login input[type="file"] {
-  background-color: #3b4148;
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
+  background-color: #FF0033;
+  color: #eee;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 
@@ -101,6 +102,7 @@ input {
   margin-bottom: 1rem;
 }
 .form__input {
+  color: white;
   -webkit-box-flex: 1;
   -webkit-flex: 1;
       -ms-flex: 1;

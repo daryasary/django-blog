@@ -31,7 +31,11 @@
                     <ul>
                         <li><a href="{% url 'home' %}">HOME</a></li>
                         <li><a href="{% url 'blog_post_list' %}">BLOG</a></li>
-                        <li><a href="{% url 'login' %}">LOGIN</a></li>
+                        {% if user.is_authenticated %}
+                        <li><a href="">LOGOUT</a></li>
+                        {% else %}
+                        <li><a href="{% url 'login' %}" style='background-color:#0F0;'>LOGIN</a></li>
+                        {% endif %}
                     </ul>
                 </nav>
             </header>
