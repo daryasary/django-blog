@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'account/style.css' %}">
+  </head>
+  
+  <body class="align">
+  <div class="site__container">
+    <div class="grid__container">
+      <form action="" method="post" class="form form--login">
+        <div class="form__field">
+          <label for="login__username"><span>First Name</span></label>
+          <input id="login__username" type="text" class="form__input" placeholder="First Name" required>
+        </div>
+
+        <div class="form__field">
+          <label for="login__username"><span>Sure Name</span></label>
+          <input id="login__username" type="text" class="form__input" placeholder="Sure Name" required>
+        </div>
+
+        <div class="form__field">
+          <label for="login__username"><span>Username</span></label>
+          <input id="login__username" type="text" class="form__input" placeholder="Username" required>
+        </div>
+
+        <div class="form__field">
+          <label for="login__password"><span>Password</span></label>
+          <input id="login__password" type="password" class="form__input" placeholder="Password" required>
+        </div>
+
+        <div class="form__field">
+          <label for="login__password"><span>Webite</span></label>
+          <input id="login__password" type="password" class="form__input" placeholder="Webiste" required>
+        </div>
+
+        <div class="form__field">
+          <label for="login__username"><span>Profile Picture</span></label>
+          <input id="login__username" type="file" class="form__input" placeholder="Profile Picture">
+        </div>
+
+        <div class="form__field">
+          <input type="submit" value="Sign Up">
+        </div>
+
+      </form>
+    </div>
+  </div>
+</body>
+</html>

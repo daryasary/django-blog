@@ -39,7 +39,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'account',
 )
+DISQUS_API_KEY = 'A71jvhzXb39dOp72TFmQM1LA6DzyFXyEY9X5bcthAybzJzzrCvBH29R07YAv88z1'
+DISQUS_WEBSITE_SHORTNAME = 'hoseinme'
+
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', home.index, name = 'home'),
     url(r'^blog/', include('blog.urls')),
+    url(r'^account/', include('account.urls')),
 ]
