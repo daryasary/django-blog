@@ -14,22 +14,18 @@ def blog_list(request , cat=None, tag=None, year=None, Month=None):
 
 	if cat is not None:
 		cat = get_object_or_404(Category, slug=cat)
-		posts = Post.objects.filter(cat=cat)
+		posts = posts.filter(cat=cat)
 
 
 	if tag is not None:
 		tag = get_object_or_404(Tag, slug=tag)
-		posts = Post.objects.filter(tag=tag)
+		posts = posts.filter(tag=tag)
 
+	# Filter posts by date not emplemented yet
 
 	Context['posts'] = posts
 	Context['Categories'] = Categories
 	Context['Tags'] = Tags
-	# categories = Category.objects.all()
-	# Context['categories'] = categories
-
-	# tags = Tag.objects.all()
-	# Context['tags'] = tags
 
 	return render(request, "blog/blog_list_display.html", Context)
 

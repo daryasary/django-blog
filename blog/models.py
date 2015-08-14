@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 
 from django.utils.timezone import now
 
+from redactor.fields import RedactorField
+
 # Create your models here.
 class Category(models.Model):
 	name = models.CharField(max_length=30)
@@ -37,10 +39,12 @@ class Tag(models.Model):
 		from django.core.urlresolvers import reverse
 		return reverse('blog_post_list_tag', args=[str(self.slug)])
 
+# editor added for body in post, more information
+# in : github.com/douglasmiranda/django-wysiwyg-redactor
 
 class Post(models.Model):
 	title = models.CharField(max_length=30)
-	body = models.TextField()
+	body = RedactorField()
 	cat = models.ManyToManyField(Category)
 	tag = models.ManyToManyField(Tag)
 	publish = models.BooleanField()
@@ -55,8 +59,8 @@ class Post(models.Model):
 		ordering = ['-date']
 	
 	def save(self, *args, **kwargs):
-		if not self.id:
-			self.slug = slugify(self.title)
+		# if not self.id:
+		# 	self.slug = slugify(self.title)
 		self.date = now()
 		super(Post, self).save(*args, **kwargs)
 

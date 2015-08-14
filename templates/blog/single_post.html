@@ -5,7 +5,7 @@
 {% block content %}
 	<article>
 		<header><h1>{{post.title}}</h1></header>
-		<section><p>{{post.body}}</p></section>
+		<section><p>{{post.body|safe}}</p></section>
 		<footer><br><br><h5>Date: {{post.date}} | Written by: {% for a in post.author.all %}{{a.username}}{%endfor%} | Category: {% for c in post.cat.all %} <a href="{{c.get_absolute_url}}">{{c.name}}</a>{% endfor %}</h5>
 		<br><br>
 

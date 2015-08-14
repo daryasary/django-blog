@@ -40,9 +40,12 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'blog',
     'account',
+    'redactor',
 )
-DISQUS_API_KEY = 'A71jvhzXb39dOp72TFmQM1LA6DzyFXyEY9X5bcthAybzJzzrCvBH29R07YAv88z1'
-DISQUS_WEBSITE_SHORTNAME = 'hoseinme'
+
+# redactor config :
+REDACTOR_OPTIONS = {'lang': 'en'}
+REDACTOR_UPLOAD = 'uploads/'
 
 
 MIDDLEWARE_CLASSES = (

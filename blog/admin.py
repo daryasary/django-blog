@@ -10,8 +10,8 @@ class CategoryAdmin(admin.ModelAdmin):
 	list_display = ['name', 'slug']
 
 class PostAdmin(admin.ModelAdmin):
-	# tag = TagAdmin()
 	list_display = ['title', 'get_cat', 'publish', 'date', 'get_tags']
+	prepopulated_fields = {'slug':("title",)}
 
 class CommentAdmin(admin.ModelAdmin):
 	list_display = ['name', 'body', 'email']

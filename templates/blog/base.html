@@ -44,15 +44,17 @@
         <div class="main-container">
             <div class="main wrapper clearfix">
 
-                {% block content %}{% endblock %}
+                
 
                 <aside>
                     <h3>Categories</h3>
-                    <p>{% for cat in Categories %}<a href="{{cat.get_absolute_url}}">{{cat.name}}{% if not forloop.last%},{%endif%}</a>{% endfor %} </p>
+                    <p>{% for cat in Categories %}<a href="{{cat.get_absolute_url}}">{{cat.name}}</a>{% if not forloop.last%}, {%endif%}{% endfor %} </p>
                     <h3>Tags</h3>
-                    <p>{% for tag in Tags %}<a href="{{tag.get_absolute_url}}"> {{tag.name}} {% if not forloop.last%},{%endif%}</a>{% endfor %}</p>
+                    <p>{% for tag in Tags %}<a href="{{tag.get_absolute_url}}"> {{tag.name}}</a>{% if not forloop.last%}, {%endif%}{% endfor %}</p>
                 </aside>
 
+
+                {% block content %}{% endblock %}
             </div> <!-- #main -->
         </div> <!-- #main-container -->
 
