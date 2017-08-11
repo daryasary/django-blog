@@ -2,11 +2,18 @@ from django.db import models
 from django.utils.text import slugify
 from django.contrib.auth.models import User
 
-from django.utils.timezone import now
-
 from redactor.fields import RedactorField
 
-# Create your models here.
+
+class Author(models.Model):
+	# Display_name should be available for translation
+	display_name = models.CharField(max_length=128)
+	avatar = models.ImageField(upload_to='/authors/', null=True)
+
+	def __unicode__(self, *args, **kwargs):
+		return self.display_name
+
+
 class Category(models.Model):
 	name = models.CharField(max_length=30)
 	slug = models.SlugField(blank=True)
@@ -22,6 +29,7 @@ class Category(models.Model):
 	def get_absolute_url(self):
 		from django.core.urlresolvers import reverse
 		return reverse ('blog_post_list_cat', args=[str(self.slug)])
+
 
 class Tag(models.Model):
 	name = models.CharField(max_length=30)
@@ -39,36 +47,38 @@ class Tag(models.Model):
 		from django.core.urlresolvers import reverse
 		return reverse('blog_post_list_tag', args=[str(self.slug)])
 
+
 # editor added for body in post, more information
 # in : github.com/douglasmiranda/django-wysiwyg-redactor
-
 class Post(models.Model):
 	title = models.CharField(max_length=30)
-	body = RedactorField()
-	cat = models.ManyToManyField(Category)
-	tag = models.ManyToManyField(Tag)
-	publish = models.BooleanField()
 	slug = models.SlugField(blank=True)
 
-	# default datetime.now should set, next ;)
-	# would be hidden field.
-	date = models.DateTimeField(default=now()) 
-	author = models.ManyToManyField(User)
+	body = RedactorField()
+	
+	cat = models.ManyToManyField(Category)
+	tag = models.ManyToManyField(Tag)
+
+	publish = models.BooleanField(default=True)
+	comments_off = models.BooleanField(default=True)
+
+	author = models.ForeignKey(Author, editable=False)
+
+	created_at = models.DateTimeField(auto_now_add=True)
+	modified_at = models.DateTimeField(auto_now=True)
 
 	class Meta:
-		ordering = ['-date']
+		ordering = ['-modified_at']
 	
 	def save(self, *args, **kwargs):
-		# if not self.id:
-		# 	self.slug = slugify(self.title)
-		self.date = now()
+		if not self.slug:
+			self.slug = slugify(self.title)
 		super(Post, self).save(*args, **kwargs)
 
 	def __unicode__(self):
 		return "%s" %(self.title)
 
 	def get_absolute_url(self):
-		# return "/blog/post/%s" %self.slug
 		from django.core.urlresolvers import reverse
 		return reverse('blog_single', args=[str(self.slug)])
 
@@ -86,10 +96,11 @@ class Post(models.Model):
 class Comment(models.Model):
 	name = models.CharField(max_length=30)
 	email = models.EmailField()
-	date = models.DateField(default=now())
-	website = models.URLField(blank=True, )
-	post = models.ForeignKey(Post, default=1)
+	website = models.URLField(blank=True)
+	post = models.ForeignKey(Post, related_name='comments')
 	body = models.TextField()
+
+	date = models.DateField(auto_now_add=True)
 
 	def __unicode__(self):
 		return "%s, %s" %(self.name, self.body)

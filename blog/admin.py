@@ -10,8 +10,15 @@ class CategoryAdmin(admin.ModelAdmin):
 	list_display = ['name', 'slug']
 
 class PostAdmin(admin.ModelAdmin):
-	list_display = ['title', 'get_cat', 'publish', 'date', 'get_tags']
+	list_display = ['title', 'get_cat', 'get_tags', 'publish', 'created_at']
 	prepopulated_fields = {'slug':("title",)}
+
+	def save_model(self, request, obj, form, change):
+		if getattr(obj, 'author', None) is None:
+			if hasattr(request.user, 'auther', None):
+				raise 'User is not available'
+			obj.author = request.user
+		obj.save()
 
 class CommentAdmin(admin.ModelAdmin):
 	list_display = ['name', 'body', 'email']
