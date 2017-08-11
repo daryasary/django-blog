@@ -7,8 +7,9 @@ from redactor.fields import RedactorField
 
 class Author(models.Model):
 	# Display_name should be available for translation
+	user = models.OneToOneField(User, related_name='author')
 	display_name = models.CharField(max_length=128)
-	avatar = models.ImageField(upload_to='/authors/', null=True)
+	avatar = models.ImageField(upload_to='authors/', blank=True)
 
 	def __unicode__(self, *args, **kwargs):
 		return self.display_name
