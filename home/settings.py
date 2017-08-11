@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'grappelli',
+    # 'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -91,22 +91,22 @@ WSGI_APPLICATION = 'home.wsgi.application'
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
-    'default' : {
-        'ENGINE' : 'django.db.backends.mysql',
-        'NAME' :  'dj_home_blog',
-        'USER' : 'hosein',
-        'PASSWORD' : 'hosein',
-        'HOST' :'',
-        'PORT' : '',
-       
-        # 'OPTIONS': {
-        #     'read_default_file': '/home/hosein/Desktop/projects/home/MysqlConfiguration.conf' ,
-        #     }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+    # 'default' : {
+    #     'ENGINE' : 'django.db.backends.mysql',
+    #     'NAME' :  'dj_home_blog',
+    #     'USER' : 'hosein',
+    #     'PASSWORD' : 'hosein',
+    #     'HOST' :'',
+    #     'PORT' : '',
+       
+    #     # 'OPTIONS': {
+    #     #     'read_default_file': '/home/hosein/Desktop/projects/home/MysqlConfiguration.conf' ,
+    #     #     }
+    # }
 }
 
 
