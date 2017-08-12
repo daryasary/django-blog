@@ -4,33 +4,32 @@ import models
 
 
 class AuthorAdmin(admin.ModelAdmin):
-	list_display = ['user', 'display_name']
+    list_display = ['user', 'display_name']
 
 
 class TagAdmin(admin.ModelAdmin):
-	list_display = ['name', 'slug']
+    list_display = ['name', 'slug']
 
 
 class CategoryAdmin(admin.ModelAdmin):
-	list_display = ['name', 'slug']
+    list_display = ['name', 'slug']
 
 
 class PostAdmin(admin.ModelAdmin):
-	list_display = ['title', 'author', 'get_cat', 'get_tags', 'publish', 'created_at']
-	prepopulated_fields = {'slug':("title",)}
+    list_display = ['title', 'author', 'get_cat',
+                    'get_tags', 'publish', 'created_at']
+    prepopulated_fields = {'slug': ("title",)}
 
-	def save_model(self, request, obj, form, change):
-		if getattr(obj, 'author', None) is None:
-			# TODO: Check if user don't have author instance raise error 
-			if getattr(request.user, 'author', None) is None:
-				raise 'User is not available'
-			print '#####', request.user.author
-			obj.author = request.user.author
-		obj.save()
+    def save_model(self, request, obj, form, change):
+        if getattr(obj, 'author', None) is None:
+            if getattr(request.user, 'author', None) is None:
+                raise Exception('Author is not available')
+            obj.author = request.user.author
+        obj.save()
 
 
 class CommentAdmin(admin.ModelAdmin):
-	list_display = ['name', 'body', 'email']
+    list_display = ['name', 'body', 'email']
 
 
 # Register your models here.
