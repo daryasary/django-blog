@@ -16,9 +16,10 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['title', 'author', 'get_cat',
-                    'get_tags', 'publish', 'created_at']
+    list_display = ['title', 'author', 'get_cat', 'get_tags',
+                    'lang', 'publish', 'created_at']
     prepopulated_fields = {'slug': ("title",)}
+    list_filter = ['lang']
 
     def save_model(self, request, obj, form, change):
         if getattr(obj, 'author', None) is None:
