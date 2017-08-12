@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.utils.translation import get_language, get_language_from_request
+from django.utils.translation import get_language_from_request
 
 from blog.models import Post, Category, Tag
 from blog.forms import CommentForm
@@ -20,7 +20,7 @@ def blog_list(request, cat=None, tag=None, year=None, Month=None):
         tag = get_object_or_404(Tag, slug=tag)
         posts = posts.filter(tag=tag)
 
-    # Filter posts by date not emplemented yet
+    # Filter posts by date not implemented yet
 
     context['posts'] = posts
     context['Categories'] = categories

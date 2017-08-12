@@ -1,10 +1,12 @@
 from django.contrib import admin
+from modeltranslation.admin import TranslationAdmin
 
 import models
 
 
-class AuthorAdmin(admin.ModelAdmin):
-    list_display = ['user', 'display_name']
+class AuthorAdmin(TranslationAdmin):
+    # list_display = ['user', 'display_name']
+    pass
 
 
 class TagAdmin(admin.ModelAdmin):
