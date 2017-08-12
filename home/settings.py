@@ -77,10 +77,10 @@ TEMPLATES = [
     },
 ]
 
-# Context proccessor needed for grappelli safe
-TEMPLATE_CONTEXT_PROCESSORS = (
-    "django.core.context_processors.request",
-)
+# # Context proccessor needed for grappelli safe
+# TEMPLATE_CONTEXT_PROCESSORS = (
+#     "django.core.context_processors.request",
+# )
 
 
 
