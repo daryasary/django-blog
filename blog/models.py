@@ -54,6 +54,7 @@ class Tag(models.Model):
 # editor added for body in post, more information
 # in : github.com/douglasmiranda/django-wysiwyg-redactor
 class Post(models.Model):
+    header = models.ImageField(upload_to='headers/')
     title = models.CharField(max_length=30)
     slug = models.SlugField(blank=True)
 
@@ -91,13 +92,11 @@ class Post(models.Model):
     def get_tags(self):
         T = self.tag.all()
         return ', '.join(t.name for t in T)
-
     get_tags.short_description = 'Tag (s)'
 
     def get_cat(self):
         C = self.cat.all()
         return ', '.join(c.name for c in C)
-
     get_cat.short_description = 'Category'
 
 
