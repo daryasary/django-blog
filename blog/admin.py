@@ -22,6 +22,7 @@ class PostAdmin(admin.ModelAdmin):
                     'lang', 'publish', 'created_at']
     prepopulated_fields = {'slug': ("title",)}
     list_filter = ['lang']
+    filter_horizontal = ('cat', 'tag')
 
     def save_model(self, request, obj, form, change):
         if getattr(obj, 'author', None) is None:
