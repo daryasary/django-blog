@@ -8,7 +8,7 @@ from blog.forms import CommentForm
 def blog_list(request, cat=None, tag=None, year=None, Month=None):
     context = {}
     lang = get_language_from_request(request)
-    posts = Post.objects.filter(lang=lang)
+    posts = Post.objects.filter(lang=lang, publish=True)
     categories = Category.objects.all()
     tags = Tag.objects.all()
 
@@ -34,7 +34,7 @@ def single_post(request, slug):
     context = {}
     categories = Category.objects.all()
     tags = Tag.objects.all()
-    post = get_object_or_404(Post, slug=slug)
+    post = get_object_or_404(Post, slug=slug, publish=True)
     context['post'] = post
     context['Categories'] = categories
     context['Tags'] = tags
