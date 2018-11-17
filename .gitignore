@@ -3,3 +3,4 @@ db.*
 media/*
 *.xml
 *.iml
+local_*
