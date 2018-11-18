@@ -13,7 +13,6 @@ urlpatterns = [
     url(r'^redactor/', include('redactor.urls')),
     url(r'^$', home.index, name = 'home'),
     url(r'^blog/', include('blog.urls')),
-    url(r'^account/', include('account.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
