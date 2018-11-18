@@ -1,7 +1,16 @@
 from django.contrib import admin
+from django.contrib.admin import AdminSite
 from modeltranslation.admin import TranslationAdmin
 
-import models
+from models import Author, Tag, Category, Post, Comment
+
+from settings import BLOG_SETTINGS
+
+
+class BlogCustomAdmin(AdminSite):
+    site_header = BLOG_SETTINGS['SITE_HEADER']
+    site_title = BLOG_SETTINGS['SITE_TITLE']
+    index_title = BLOG_SETTINGS['INDEX_TITLE']
 
 
 class AuthorAdmin(TranslationAdmin):
@@ -36,9 +45,17 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ['name', 'body', 'email']
 
 
-# Register your models here.
-admin.site.register(models.Author, AuthorAdmin)
-admin.site.register(models.Tag, TagAdmin)
-admin.site.register(models.Category, CategoryAdmin)
-admin.site.register(models.Post, PostAdmin)
-admin.site.register(models.Comment, CommentAdmin)
+# register blog models to general admin panel
+admin.site.register(Author, AuthorAdmin)
+admin.site.register(Tag, TagAdmin)
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(Post, PostAdmin)
+admin.site.register(Comment, CommentAdmin)
+
+# register blog to it's custom admin panel
+blog_admin_site = BlogCustomAdmin(name='blog_admin')
+blog_admin_site.register(Author, AuthorAdmin)
+blog_admin_site.register(Tag, TagAdmin)
+blog_admin_site.register(Category, CategoryAdmin)
+blog_admin_site.register(Post, PostAdmin)
+blog_admin_site.register(Comment, CommentAdmin)
