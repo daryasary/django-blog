@@ -110,3 +110,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+# BLOG_SETTINGS
+BLOG_SETTINGS = {
+    'ENABLE_CUSTOM_PANEL': True,
+    'SITE_HEADER': "Inprobes Blog administration panel",
+}

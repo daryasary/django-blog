@@ -7,7 +7,7 @@ from . import views as home
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^redactor/', include('redactor.urls')),
-    url(r'^$', home.index, name = 'home'),
+    # url(r'^$', home.index, name = 'home'),
     url(r'^blog/', include('blog.urls')),
 ]
 if settings.DEBUG:
