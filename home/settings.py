@@ -23,6 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Application definition
 
 INSTALLED_APPS = (
+    'django.contrib.sites',
     'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -31,9 +32,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
-    # 'account',
+    'djangoseo',
     'redactor',
 )
+SITE_ID = 1
 
 # redactor config :
 REDACTOR_OPTIONS = {'lang': 'en'}

@@ -1,7 +1,9 @@
 from django.contrib import admin
 from django.contrib.admin import AdminSite
+from djangoseo.admin import register_seo_admin, get_inline
 from modeltranslation.admin import TranslationAdmin
 
+from blog.seo import BasicMetadata
 from models import Author, Tag, Category, Post, Comment
 
 from settings import BLOG_SETTINGS
@@ -33,6 +35,12 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ['lang']
     filter_horizontal = ('cat', 'tag')
 
+    def get_inline_instances(self, request, obj=None):
+        inlines = super(PostAdmin, self).get_inline_instances(request, obj=None)
+        if BLOG_SETTINGS['ADD_META']:
+            inlines.append(get_inline(BasicMetadata))
+        return inlines
+
     def save_model(self, request, obj, form, change):
         if getattr(obj, 'author', None) is None:
             if getattr(request.user, 'author', None) is None:
@@ -52,6 +60,8 @@ admin.site.register(Category, CategoryAdmin)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Comment, CommentAdmin)
 
+register_seo_admin(admin.site, BasicMetadata)
+
 # register blog to it's custom admin panel
 blog_admin_site = BlogCustomAdmin(name='blog_admin')
 blog_admin_site.register(Author, AuthorAdmin)
@@ -59,3 +69,5 @@ blog_admin_site.register(Tag, TagAdmin)
 blog_admin_site.register(Category, CategoryAdmin)
 blog_admin_site.register(Post, PostAdmin)
 blog_admin_site.register(Comment, CommentAdmin)
+
+register_seo_admin(blog_admin_site, BasicMetadata)

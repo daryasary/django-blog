@@ -14,6 +14,7 @@ DEFAULT_BLOG_SETTINGS = {
     'SITE_HEADER': "Blog administration panel",
     'SITE_TITLE': "Blog panel",
     'INDEX_TITLE': "Welcome to Blog admin panel",
+    'ADD_META': False
 }
 
 APP_SETTINGS = getattr(settings, 'BLOG_SETTINGS', None)

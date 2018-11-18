@@ -87,7 +87,7 @@ class Post(models.Model):
         return reverse('blog_single', args=[str(self.slug)])
 
     def get_tags(self):
-        return ', '.join(self.tag.values_list('name', Flat=True))
+        return ', '.join(self.tag.values_list('name', flat=True))
     get_tags.short_description = 'Tag (s)'
 
     def get_cat(self):
