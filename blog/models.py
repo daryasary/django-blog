@@ -8,7 +8,6 @@ from redactor.fields import RedactorField
 
 
 class Author(models.Model):
-    # Display_name should be available for translation
     user = models.OneToOneField(User, related_name='author')
     display_name = models.CharField(max_length=128)
     avatar = models.ImageField(upload_to='authors/', blank=True)
@@ -51,11 +50,9 @@ class Tag(models.Model):
         return reverse('blog_post_list_tag', args=[str(self.slug)])
 
 
-# editor added for body in post, more information
-# in : github.com/douglasmiranda/django-wysiwyg-redactor
 class Post(models.Model):
-    header = models.ImageField(upload_to='headers/')
-    title = models.CharField(max_length=30)
+    header = models.ImageField(upload_to='headers/', blank=True, null=True)
+    title = models.CharField(max_length=64)
     slug = models.SlugField(blank=True)
 
     body = RedactorField()
@@ -66,8 +63,8 @@ class Post(models.Model):
     publish = models.BooleanField(default=True)
     comments_off = models.BooleanField(default=True)
 
-    lang = models.CharField(max_length=2, choices=settings.LANGUAGES,
-                            default='en', verbose_name=_('Language'))
+    lang = models.CharField(max_length=8, default=settings.LANGUAGE_CODE,
+                            choices=settings.LANGUAGES, verbose_name=_('Language'))
 
     author = models.ForeignKey(Author, editable=False)
 
@@ -90,13 +87,11 @@ class Post(models.Model):
         return reverse('blog_single', args=[str(self.slug)])
 
     def get_tags(self):
-        T = self.tag.all()
-        return ', '.join(t.name for t in T)
+        return ', '.join(self.tag.values_list('name', Flat=True))
     get_tags.short_description = 'Tag (s)'
 
     def get_cat(self):
-        C = self.cat.all()
-        return ', '.join(c.name for c in C)
+        return ', '.join(self.cat.values_list('name', flat=True))
     get_cat.short_description = 'Category'
 
 
