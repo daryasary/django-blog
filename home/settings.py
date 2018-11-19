@@ -118,4 +118,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 BLOG_SETTINGS = {
     'ENABLE_CUSTOM_PANEL': True,
     'SITE_HEADER': "Inprobes Blog administration panel",
+    'ADD_META': True,
 }

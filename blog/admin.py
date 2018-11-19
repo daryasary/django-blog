@@ -38,7 +38,7 @@ class PostAdmin(admin.ModelAdmin):
     def get_inline_instances(self, request, obj=None):
         inlines = super(PostAdmin, self).get_inline_instances(request, obj=None)
         if BLOG_SETTINGS['ADD_META']:
-            inlines.append(get_inline(BasicMetadata))
+            inlines.append(get_inline(BasicMetadata)(self.model, self.admin_site))
         return inlines
 
     def save_model(self, request, obj, form, change):
@@ -60,7 +60,8 @@ admin.site.register(Category, CategoryAdmin)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Comment, CommentAdmin)
 
-register_seo_admin(admin.site, BasicMetadata)
+if BLOG_SETTINGS['ADD_META']:
+    register_seo_admin(admin.site, BasicMetadata)
 
 # register blog to it's custom admin panel
 blog_admin_site = BlogCustomAdmin(name='blog_admin')
@@ -70,4 +71,5 @@ blog_admin_site.register(Category, CategoryAdmin)
 blog_admin_site.register(Post, PostAdmin)
 blog_admin_site.register(Comment, CommentAdmin)
 
-register_seo_admin(blog_admin_site, BasicMetadata)
+if BLOG_SETTINGS['ADD_META']:
+    register_seo_admin(blog_admin_site, BasicMetadata)

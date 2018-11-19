@@ -16,8 +16,8 @@
         <link rel="stylesheet" href="{% static 'blog/css/main.css' %}">
 
         <script src="{% static 'js/vendor/modernizr-2.8.3-respond-1.4.2.min.js' %}"></script>
-
-
+        {% load seo %}
+        {% get_metadata %}
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -29,7 +29,7 @@
                 <h1 class="title">BLOG</h1>
                 <nav>
                     <ul>
-                        <li><a href="{% url 'home' %}">HOME</a></li>
+                        <li><a href="#">HOME</a></li>
                         <li><a href="{% url 'blog_post_list' %}">BLOG</a></li>
                         {% if user.is_authenticated %}
                         <li><a href="">LOGOUT</a></li>
@@ -44,7 +44,7 @@
         <div class="main-container">
             <div class="main wrapper clearfix">
 
-                
+
 
                 <aside>
                     <h3>Categories</h3>
