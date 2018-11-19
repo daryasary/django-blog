@@ -1,3 +1,5 @@
+from __future__ import unicode_literals
+
 from django import forms
 from blog.models import Comment
 from datetime import datetime

@@ -1,4 +1,7 @@
+from __future__ import unicode_literals
+
 from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
 from django.utils.text import slugify
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -7,6 +10,7 @@ from django.utils.translation import ugettext_lazy as _
 from redactor.fields import RedactorField
 
 
+@python_2_unicode_compatible
 class Author(models.Model):
     user = models.OneToOneField(User, related_name='author')
     display_name = models.CharField(max_length=128)
@@ -16,6 +20,7 @@ class Author(models.Model):
         return self.display_name
 
 
+@python_2_unicode_compatible
 class Category(models.Model):
     name = models.CharField(max_length=30)
     slug = models.SlugField(blank=True)
@@ -33,6 +38,7 @@ class Category(models.Model):
         return reverse('blog_post_list_cat', args=[str(self.slug)])
 
 
+@python_2_unicode_compatible
 class Tag(models.Model):
     name = models.CharField(max_length=30)
     slug = models.SlugField(blank=True)
@@ -50,6 +56,7 @@ class Tag(models.Model):
         return reverse('blog_post_list_tag', args=[str(self.slug)])
 
 
+@python_2_unicode_compatible
 class Post(models.Model):
     header = models.ImageField(upload_to='headers/', blank=True, null=True)
     title = models.CharField(max_length=64)
@@ -95,6 +102,7 @@ class Post(models.Model):
     get_cat.short_description = 'Category'
 
 
+@python_2_unicode_compatible
 class Comment(models.Model):
     name = models.CharField(max_length=30)
     email = models.EmailField()

@@ -2,8 +2,8 @@
 A simple multi language blog engine based on django. This project is a part of [Inprobes](https://inprobes.com) project. Use free forever.
 
 ### requirements
-* `python 2.7`
-* `django 1.11.16`
+* `python > 2.7 or python > 3.5`
+* `django > 1.11.16`
 
 ### How to use
 To enable extra admin panel or change its title/header,... should modify this default fields inside your app settings:

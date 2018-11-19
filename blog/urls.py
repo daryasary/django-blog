@@ -1,3 +1,5 @@
+from __future__ import unicode_literals
+
 from django.conf.urls import url
 from blog.admin import blog_admin_site
 from blog.views import blog_list, single_post

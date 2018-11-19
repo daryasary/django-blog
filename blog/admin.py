@@ -1,3 +1,5 @@
+from __future__ import unicode_literals
+
 from django.contrib import admin
 from django.contrib.admin import AdminSite
 from djangoseo.admin import register_seo_admin, get_inline
